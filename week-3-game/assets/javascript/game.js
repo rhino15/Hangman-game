@@ -20,12 +20,27 @@ function game(userGuess) {
 	if (checkGuess(lettersGuessed, userGuess)) {
 		lettersGuessed.push(userGuess);
 	}
+
+	// if already guessed, get out. if ()
+
+	// decrement counter numguessesremaining--;
+
+	// is letter in word? if (randword.charAt(i) == userGuess) { correctguess.push(userguess) } {else lettersguessed.push(userguess)}
+		// yes: store in coorrect array
+		// no: add it letters guessed
+
+	// write guessed and correct to screen and tries
+
 	
 	for (var i = 0; i < correctGuess.length; i++) {
 		if (randWord.charAt(i) == userGuess) {
 			correctGuess[i] = userGuess;
+			lettersGuessed.pop(userGuess);
 		}
 	}
+
+	console.log(correctGuess);
+	console.log(lettersGuessed);
 		
 }
 
