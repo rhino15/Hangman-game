@@ -20,18 +20,16 @@ function game(userGuess) {
 	if (checkGuess(lettersGuessed, userGuess)) {
 		lettersGuessed.push(userGuess);
 	}
-
-		
+	
 	for (var i = 0; i < correctGuess.length; i++) {
 		if (randWord.charAt(i) == userGuess) {
 			correctGuess[i] = userGuess;
 		}
 	}
-	
-	
+		
 }
 
-//display blanks and gives random word
+//display blanks 
 function blanks(word) {
 	var wordBlank = "";
 	var wordBlankArr = [];
@@ -45,11 +43,25 @@ function blanks(word) {
 	return wordBlankArr;
 }
 
-//check if guess has been made
+//check if guess has been made.  if guess has not been made return true to add to lettersGuessed. 
+//if false, user already guesses and it won't add to lettersGuessed.
 function checkGuess(lettersGuessed, userGuess) {
 	if (lettersGuessed.indexOf(userGuess) == -1) {
 		return true;
 	}
 	return false;
 }
+
+function displayIncorrectGuesses(lettersGuessed, correctGuess) {
+	/*
+	declare new array
+	look at letters guessed
+	look at correct guessed
+	take out all correct guessedLetters from lettersGuessed
+	*/
+	var displayWrongGuess = [];
+	
+}
+
+
 
