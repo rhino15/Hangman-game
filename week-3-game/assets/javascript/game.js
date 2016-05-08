@@ -18,29 +18,23 @@ function game(userGuess) {
 	correctGuess.length = blanks(randWord).length;
 
 	if (checkGuess(lettersGuessed, userGuess)) {
-		lettersGuessed.push(userGuess);
+	    if (correctGuess.indexOf(userGuess) > 0  &&lettersGuessed.indexOf(userGuess) > 0) {
+	  		return;
+	   } else {
+	   	lettersGuessed.push(userGuess);
+	   }
 	}
-
-	// if already guessed, get out. if ()
-
-	// decrement counter numguessesremaining--;
-
-	// is letter in word? if (randword.charAt(i) == userGuess) { correctguess.push(userguess) } {else lettersguessed.push(userguess)}
-		// yes: store in coorrect array
-		// no: add it letters guessed
-
-	// write guessed and correct to screen and tries
-
 	
-	for (var i = 0; i < correctGuess.length; i++) {
-		if (randWord.charAt(i) == userGuess) {
-			correctGuess[i] = userGuess;
-			lettersGuessed.pop(userGuess);
-		}
-	}
+	calcCorrectAndIncorrectGuesses(lettersGuessed, correctGuess, randWord, userGuess);
 
-	console.log(correctGuess);
+	if (correctGuess.indexOf(userGuess) == -1) {
+		numGuessesRemaining--;
+	} else if (!checkGuess(lettersGuessed, userGuess)) {
+		numGuessesRemaining++;
+	}
+	console.log(numGuessesRemaining);
 	console.log(lettersGuessed);
+	console.log(correctGuess);
 		
 }
 
@@ -67,16 +61,20 @@ function checkGuess(lettersGuessed, userGuess) {
 	return false;
 }
 
-function displayIncorrectGuesses(lettersGuessed, correctGuess) {
-	/*
-	declare new array
-	look at letters guessed
-	look at correct guessed
-	take out all correct guessedLetters from lettersGuessed
-	*/
-	var displayWrongGuess = [];
-	
+function calcCorrectAndIncorrectGuesses(lettersGuessed, correctGuess, randWord, userGuess) {
+	for (var i = 0; i < correctGuess.length; i++) {
+		if (randWord.charAt(i) == userGuess) {
+			correctGuess[i] = userGuess;	
+		} 
+	}
+
+	if (correctGuess.indexOf(userGuess) >= 0) {
+		lettersGuessed.pop(userGuess);
+	}
+
 }
+	
+
 
 
 
