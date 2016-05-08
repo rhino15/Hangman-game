@@ -27,9 +27,10 @@ function game(userGuess) {
 	}
 	
 	calcCorrectAndIncorrectGuesses(lettersGuessed, correctGuess, randWord, userGuess);
+
 	if (lettersGuessed.length >= lengthCheck) {
 		numGuessesRemaining--;
-	}		
+	}	
 }
 
 //display blanks 
