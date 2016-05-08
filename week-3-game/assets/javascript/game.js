@@ -18,24 +18,18 @@ function game(userGuess) {
 	correctGuess.length = blanks(randWord).length;
 
 	if (checkGuess(lettersGuessed, userGuess)) {
-	    if (correctGuess.indexOf(userGuess) > 0  &&lettersGuessed.indexOf(userGuess) > 0) {
+	    if (correctGuess.indexOf(userGuess) > 0) {
 	  		return;
 	   } else {
 	   	lettersGuessed.push(userGuess);
+	   	var lengthCheck = lettersGuessed.length;
 	   }
 	}
 	
 	calcCorrectAndIncorrectGuesses(lettersGuessed, correctGuess, randWord, userGuess);
-
-	if (correctGuess.indexOf(userGuess) == -1) {
+	if (lettersGuessed.length >= lengthCheck) {
 		numGuessesRemaining--;
-	} else if (!checkGuess(lettersGuessed, userGuess)) {
-		numGuessesRemaining++;
-	}
-	console.log(numGuessesRemaining);
-	console.log(lettersGuessed);
-	console.log(correctGuess);
-		
+	}		
 }
 
 //display blanks 
