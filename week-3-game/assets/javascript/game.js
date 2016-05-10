@@ -1,22 +1,25 @@
 var lettersGuessed = [];
-var correctGuess = [];
 var numWins = 0;
 var numLosses = 0;
 var numGuessesRemaining = 10;
-var wordBank = ["foobar", "bob"];
+var wordBank = ["bob"];
 var randWord = wordBank[Math.floor(Math.random() * wordBank.length)].toUpperCase();
 var chosenWord = randWord;
+//function that makes the blanks for the word, and fills in the correct guesses.
+var correctGuess = blanks(chosenWord);
 
 document.onkeyup = function(event) {	
 	var userGuess = String.fromCharCode(event.keyCode).toUpperCase();	
 	game(userGuess, wordBank, chosenWord);
+
+	for (var i = 0; i < chosenWord.length; i++) {
+		var html ="<h4>" + correctGuess.join(" ") + "</h4>";
+	}
+
+	document.querySelector('#game').innerHTML = html;
 }
 //main game
-function game(userGuess, wordBank, chosenWord) {	
-	//function that makes the blanks for the word
-	blanks(chosenWord);
-	//need to give the length of the blank array to correctGuess
-	correctGuess.length = blanks(chosenWord).length;
+function game(userGuess, wordBank, chosenWord) {
     //this if/else branch checks to see if the letter has been guessed, if not it will run into
     //calcCorrectandIncorrectGuesses.  if it does, and if it is guessed correctly it will return out of it
     //if not, push the guessed letter into lettersGuessed and keep a counter to check against numguessesremaining
@@ -39,28 +42,19 @@ function game(userGuess, wordBank, chosenWord) {
 	var status = winOrLose(numGuessesRemaining, correctGuess);
 
 	if (status == 0) {
-		console.log("you lose");
-		location.reload();	
+		numLosses++;		
 	} else if (status == 1) {
-		console.log("you win");
-		location.reload();
+		numWins++;
 	}
-	console.log(numWins);
-	console.log(numLosses);
-
 }
 
 //display blanks 
 function blanks(word) {
-	var wordBlank = "";
 	var wordBlankArr = [];
 	for (var i = 0; i < word.length; i++) {
-		wordBlank += "_ ";
 		wordBlankArr.push("_");
 	}
 
-	var html ="<h3>Current Word</h3>" + "<h4>" + wordBlank + "</h4>";
-	document.querySelector('#game').innerHTML = html;
 	return wordBlankArr;
 }
 
@@ -87,24 +81,20 @@ function calcCorrectAndIncorrectGuesses(lettersGuessed, correctGuess, chosenWord
 
 function winOrLose(numGuessesRemaining, correctGuess) {
 	if (numGuessesRemaining == 0) {
-		numLosses++;
-		localStorage.setItem("numLosses", numLosses);
 		return 0;
 	} 
 
 	var check = 0;
 	for (var i = 0; i < correctGuess.length; i++) {
-		if (typeof correctGuess[i] == "undefined") {
+		if (correctGuess.indexOf("_") == - 1) {
 			check++;
 		}
 	}
 
 	if (numGuessesRemaining > 0 && check == 0) {
-		numWins++;
-		localStorage.setItem("numWins", numWins);
 		return 1;
 	}
-
 }
+
 
 
