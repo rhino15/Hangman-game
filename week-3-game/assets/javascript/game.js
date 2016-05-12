@@ -1,11 +1,21 @@
 var numWins = 0;
 var numLosses = 0;
+var bankIndex = 0;
 var lettersGuessed = [];
 var correctGuess = [];
 var numGuessesRemaining = 10;
-var wordBank = ["Princess Peach"];
-var randWord = wordBank[Math.floor(Math.random() * wordBank.length)].toUpperCase();
-randWord = randWord.replace(" ", "");
+var wordBank = ["PrincessPeach", "Mario", "Luigi", "Toad", "Bowser", "Mushroom", "FireFlower", "DonkeyKong",
+				"PrincessZelda", "Link", "Ganondorf", "Samus", "Kirby"];
+
+var nintendoImages = ["assets/images/peach.jpg", "assets/images/mario.jpg", "assets/images/luigi.jpg",
+					"assets/images/toad.png", "assets/images/bowser.jpg", "assets/images/mushroom.jpg",
+					"assets/images/flower.png", "assets/images/kong.jpg", "assets/images/zelda.jpg",
+					"assets/images/link.jpg", "assets/images/ganon.png","assets/images/samus.jpg", 
+					"assets/images/kirby.png"];
+
+var randWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+bankIndex = wordBank.indexOf(randWord);
+randWord = randWord.replace(" ", "").toUpperCase();
 //function that makes the blanks for the word, and fills in the correct guesses.
 correctGuess = blanks(randWord);
 
@@ -16,15 +26,16 @@ document.onkeyup = function(event) {
 	var status = winOrLose(numGuessesRemaining, correctGuess);
 	gameOver(status);
 
-	var html ="<h4>" + correctGuess.join(" ") + "</h4>" + "<h3>Guesses remaining: " + numGuessesRemaining + "</h3>" + 
-	"<h3>Wins " + numWins + "</h3>" + "<h3>Losses: " + numLosses + "</h3";
+	var html ="<h4>" + correctGuess.join(" ") + "</h4><br>" + "<h3>Guesses remaining: " + numGuessesRemaining + "</h3><br>" + 
+	"<h3>Wins " + numWins + "</h3><br>" + "<h3>Losses: " + numLosses + "</h3";
 
 	document.querySelector('#game').innerHTML = html;
 
 	if (status == 0) {
 		resetState();
-	} else if (status == 1) {
+	} else if(status == 1) {
 		resetState();
+
 	}
 }
 //main game
@@ -103,16 +114,20 @@ function gameOver(status) {
 		numLosses++;
 
 	} else if (status == 1) {
+		document.getElementById("images").innerHTML = "<img src=" + nintendoImages[bankIndex] + ">";
 		numWins++;
 	}
 
 }
 
 function resetState() {
-	randWord = wordBank[Math.floor(Math.random() * wordBank.length)].toUpperCase();
+	randWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+	bankIndex = wordBank.indexOf(randWord);
+	randWord = randWord.replace(" ", "").toUpperCase();
 	correctGuess = blanks(randWord);
 	numGuessesRemaining = 10;
 	lettersGuessed = [];
+	
 }
 
 

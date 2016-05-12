@@ -1,6 +1,6 @@
 body {
 	background-image: url(../../assets/images/mario.png);
-	background-size: 90%;
+	background-size: cover;
 	font-family: 'marioFont';
 	font-size: 200%;
 }
@@ -11,8 +11,19 @@ body {
 }
 
 .jumbotron {
+	margin-top: 1%;
 	text-align: center;
 	background-color: #E86A06;
 	color: #E8C7B8;
 	text-shadow: 6px 6px 12px black;
+}
+
+#quality img {
+	
+}
+
+#images img {
+	margin-left: 15%;
+	margin-top: 56%;
+	width: 60%;
 }
