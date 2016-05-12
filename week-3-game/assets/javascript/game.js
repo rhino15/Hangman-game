@@ -35,12 +35,10 @@ document.onkeyup = function(event) {
 		resetState();
 	} else if(status == 1) {
 		resetState();
-
 	}
 }
 //main game
 function game(userGuess, wordBank, randWord) {
-	//debugger;
     //this if/else branch checks to see if the letter has been guessed, if not it will run into
     //calcCorrectandIncorrectGuesses.  if it does, and if it is guessed correctly it will return out of it
     //if not, push the guessed letter into lettersGuessed and keep a counter to check against numguessesremaining
@@ -111,9 +109,11 @@ function winOrLose(numGuessesRemaining, correctGuess) {
 
 function gameOver(status) {
 	if (status == 0) {
+		alert("You lost...the word was " + randWord + ". Try Again!");
 		numLosses++;
 
 	} else if (status == 1) {
+		alert("You Won!!!.  You guessed " + randWord +".  Play Again!!");
 		document.getElementById("images").innerHTML = "<img src=" + nintendoImages[bankIndex] + ">";
 		numWins++;
 	}
@@ -127,7 +127,6 @@ function resetState() {
 	correctGuess = blanks(randWord);
 	numGuessesRemaining = 10;
 	lettersGuessed = [];
-	
 }
 
 
