@@ -1,1 +1,1 @@
-<?php include_once("Hangman-game/week-3-game/index.html"); ?>
+<?php include_once("/index.html"); ?>
