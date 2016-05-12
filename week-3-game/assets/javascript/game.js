@@ -3,8 +3,9 @@ var numLosses = 0;
 var lettersGuessed = [];
 var correctGuess = [];
 var numGuessesRemaining = 10;
-var wordBank = ["bob", "foobar", "yellow", "thing"];
+var wordBank = ["Princess Peach"];
 var randWord = wordBank[Math.floor(Math.random() * wordBank.length)].toUpperCase();
+randWord = randWord.replace(" ", "");
 //function that makes the blanks for the word, and fills in the correct guesses.
 correctGuess = blanks(randWord);
 
@@ -13,16 +14,18 @@ document.onkeyup = function(event) {
 	game(userGuess, wordBank, randWord);
 	//calls the function to check to see if the user has won or lost
 	var status = winOrLose(numGuessesRemaining, correctGuess);
-	gameOver(status, randWord);
-	//calls the function to check to see if the user has won or lost
-	var status = winOrLose(numGuessesRemaining, correctGuess);
-	gameOver(status, randWord);
-
+	gameOver(status);
 
 	var html ="<h4>" + correctGuess.join(" ") + "</h4>" + "<h3>Guesses remaining: " + numGuessesRemaining + "</h3>" + 
 	"<h3>Wins " + numWins + "</h3>" + "<h3>Losses: " + numLosses + "</h3";
 
 	document.querySelector('#game').innerHTML = html;
+
+	if (status == 0) {
+		resetState();
+	} else if (status == 1) {
+		resetState();
+	}
 }
 //main game
 function game(userGuess, wordBank, randWord) {
@@ -97,14 +100,10 @@ function winOrLose(numGuessesRemaining, correctGuess) {
 
 function gameOver(status) {
 	if (status == 0) {
-		alert("Sorry, the word was " + randWord);
 		numLosses++;
-		resetState();
 
 	} else if (status == 1) {
-		alert("Wonderful, you guessed " + randWord);
 		numWins++;
-		resetState();
 	}
 
 }

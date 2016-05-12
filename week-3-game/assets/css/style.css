@@ -1,0 +1,18 @@
+body {
+	background-image: url(../../assets/images/mario.png);
+	background-size: 90%;
+	font-family: 'marioFont';
+	font-size: 200%;
+}
+
+@font-face {
+	font-family: "marioFont";
+	src: url('../images/superMario.ttf') format("truetype");
+}
+
+.jumbotron {
+	text-align: center;
+	background-color: #E86A06;
+	color: #E8C7B8;
+	text-shadow: 6px 6px 12px black;
+}
