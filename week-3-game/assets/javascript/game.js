@@ -27,8 +27,8 @@ document.onkeyup = function(event) {
 	gameOver(status);
 
 	var html ="<h4>" + correctGuess.join(" ") + "</h4><br>" + "<h3>Guesses remaining: " + numGuessesRemaining + "</h3><br>" + 
-	"<h3>Wins " + numWins + "</h3><br>" + "<h3>Losses: " + numLosses + "</h3";
-
+	"<h3>Wins " + numWins + "</h3><br>" + "<h3>Losses: " + numLosses + "</h3><br>" + "<h3>Letters Guessed: " + lettersGuessed + "</h3>";
+	console.log(lettersGuessed);
 	document.querySelector('#game').innerHTML = html;
 
 	if (status == 0) {
@@ -47,6 +47,7 @@ function game(userGuess, wordBank, randWord) {
 	  		return;
 	   } else {
 	   	lettersGuessed.push(userGuess);
+	   	console.log(lettersGuessed);
 	   	var lengthCheck = lettersGuessed.length;
 	   }
 	}
